@@ -33,30 +33,39 @@
   .hero h1{font-size:44px;line-height:1.08;font-weight:800;letter-spacing:-1px;margin-bottom:16px}
   .hero .lead{font-size:17px;color:var(--muted);margin-bottom:28px;max-width:480px}
   .hero .lead b{color:var(--text)}
-  .price-row{display:flex;align-items:baseline;gap:12px;margin-bottom:8px}
-  .price{font-size:40px;font-weight:800;color:var(--brand)}
-  .price small{font-size:16px;color:var(--muted);font-weight:500}
-  .limit{font-size:13px;color:var(--muted);margin-bottom:24px}
-  .limit b{color:var(--brand)}
-  .btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
-  .btn{padding:13px 26px;border-radius:10px;font-weight:700;font-size:14px;transition:.2s;border:none;cursor:pointer}
+  .btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+  .btn{padding:13px 26px;border-radius:10px;font-weight:700;font-size:14px;transition:.2s;border:none;cursor:pointer;display:inline-block}
   .btn-primary{background:var(--brand);color:#fff}
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px var(--brand-dim)}
   .btn-ghost{background:#fff;color:var(--text);border:1.5px solid var(--border)}
-  .guarantee{font-size:12.5px;color:var(--muted)}
-  .guarantee b{color:var(--green)}
+  .note{font-size:12.5px;color:var(--muted)}
   .hero-img{
-    border-radius:20px;background:linear-gradient(160deg,#FFF0F4,#F8F9FA);
-    border:1px solid var(--border);min-height:380px;
-    display:flex;align-items:center;justify-content:center;
-    color:var(--muted);font-size:14px;
+    border-radius:20px;min-height:380px;
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
   }
-  .hero-img .ph{font-size:64px;display:block;text-align:center;margin-bottom:8px}
+  .hero-img img{width:100%;height:auto;display:block;border-radius:20px}
+
+  .notify{padding:56px 0 72px}
+  .notify-card{
+    max-width:640px;margin:0 auto;background:var(--card);border:1px solid var(--border);
+    border-radius:20px;padding:36px;text-align:center;box-shadow:0 12px 40px rgba(17,17,17,.06);
+  }
+  .notify-card h2{font-size:26px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
+  .notify-card p{color:var(--muted);font-size:15px;margin-bottom:22px}
+  .form{display:flex;gap:10px;max-width:420px;margin:0 auto}
+  .form input{
+    flex:1;padding:13px 16px;border-radius:10px;border:1.5px solid var(--border);
+    font-size:14px;outline:none;transition:.2s;
+  }
+  .form input:focus{border-color:var(--brand)}
+  .form .btn{padding:13px 22px}
+  .form-ok{color:var(--green);font-weight:700;font-size:14px;display:none;margin:0}
   @media(max-width:820px){
     .hero-grid{grid-template-columns:1fr;gap:32px}
     .hero{padding:36px 0}
     .hero h1{font-size:34px}
     .hero-img{min-height:260px}
+    .form{flex-direction:column}
   }
 </style>
 </head>
@@ -65,38 +74,56 @@
 <nav>
   <div class="wrap nav-in">
     <div class="logo">Pom<span>Tum</span> Pal 1</div>
-    <a href="#reserve" class="nav-cta">Reserve $20</a>
+    <a href="#notify" class="nav-cta">Notify Me</a>
   </div>
 </nav>
 
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow">Super Early Bird · 50–100 units only</span>
+      <span class="eyebrow">Kickstarter · Coming Soon</span>
       <h1>Your AI agent.<br>Finally off your laptop.</h1>
       <p class="lead">
         <b>PomTum Pal 1</b> — a pocket-sized Linux handheld with a built-in AI agent.
         Local memory. 4G. Yours to give it full control.
         Close the laptop and walk away — it keeps working.
       </p>
-      <div class="price-row">
-        <div class="price">$199<small> / super early bird</small></div>
-      </div>
-      <div class="limit">Limit <b>50–100 units</b> at this price · then back to regular pricing</div>
       <div class="btns">
-        <a href="#reserve" class="btn btn-primary">Reserve your place — $20</a>
-        <a href="#reserve" class="btn btn-ghost">Ask a question</a>
+        <!-- TODO: replace with the real Kickstarter campaign URL -->
+        <a href="https://www.kickstarter.com/projects/pomtum/pomtum-pal-1" target="_blank" rel="noopener" class="btn btn-primary">Back us on Kickstarter</a>
+        <a href="#notify" class="btn btn-ghost">Get notified</a>
       </div>
-      <div class="guarantee"><b>Fully refundable.</b> No charge until production.</div>
+      <div class="note">No payment here — just leave your email and we'll tell you when the campaign goes live.</div>
     </div>
     <div class="hero-img" id="hero-img">
-      <div>
-        <span class="ph">📱</span>
-        <span>Product render goes here<br>(transparent PNG)</span>
-      </div>
+      <img src="hero.png" alt="PomTum Pal 1 — pocket-sized AI handheld">
     </div>
   </div>
 </header>
+
+<section class="notify" id="notify">
+  <div class="wrap">
+    <div class="notify-card">
+      <h2>Be the first to know.</h2>
+      <p>Leave your email — we'll notify you the moment the Kickstarter campaign launches.</p>
+      <form class="form" id="notify-form">
+        <input type="email" id="notify-email" placeholder="Your email address" required>
+        <button type="submit" class="btn btn-primary">Notify Me</button>
+      </form>
+      <p class="form-ok" id="form-ok">Thanks! We'll email you the moment it launches. 🎉</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.getElementById('notify-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var email = document.getElementById('notify-email').value.trim();
+    if(!email) return;
+    this.style.display = 'none';
+    document.getElementById('form-ok').style.display = 'block';
+  });
+</script>
 
 </body>
 </html>
